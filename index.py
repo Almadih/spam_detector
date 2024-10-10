@@ -1,17 +1,21 @@
 import tkinter as tk
 from tkinter import scrolledtext, messagebox
 from model import predict
+import re
 
 
 def predict_spam():
     email_text = email_body_input.get("1.0", tk.END).strip()
     email_address = email_address_input.get("1.0", tk.END).strip()
-    print(email_address)
-    print(email_text)
-    
+
     if not email_text or not email_address:
         messagebox.showwarning("Input Error", "Please enter email text and address.")
         return
+    #check if email is valid with regex
+    if re.search(r"[^@]+@[^@]+\.[^@]+", email_address) is None:
+        messagebox.showwarning("Input Error", "Please enter a valid email address.")
+        return
+    
     
     prediction = predict(email_text,email_address)
     
