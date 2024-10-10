@@ -12,7 +12,7 @@ def predict_spam():
         messagebox.showwarning("Input Error", "Please enter email text and address.")
         return
     #check if email is valid with regex
-    if re.search(r"[^@]+@[^@]+\.[^@]+", email_address) is None:
+    if re.search(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email_address) is None:
         messagebox.showwarning("Input Error", "Please enter a valid email address.")
         return
     
